@@ -333,16 +333,19 @@ variable "database_encryption" {
 }
 
 variable "cloudrun" {
+  type        = bool
   description = "(Beta) Enable CloudRun addon"
   default     = false
 }
 
 variable "enable_binary_authorization" {
+  type        = bool
   description = "Enable BinAuthZ Admission controller"
   default     = false
 }
 
 variable "pod_security_policy_config" {
+  type        = bool
   description = "enabled - Enable the PodSecurityPolicy controller for this cluster. If enabled, pods must be valid under a PodSecurityPolicy to be created."
   default     = [{
     "enabled" = false
@@ -350,7 +353,21 @@ variable "pod_security_policy_config" {
 }
 
 variable "node_metadata" {
+  type        = string
   description = "Specifies how node metadata is exposed to the workload running on the node"
   default     = "UNSPECIFIED"
 }
+
+variable "enable_intranode_visibility" {
+  type        = bool
+  description = "Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network"
+  default     = false
+}
+
+variable "enable_vertical_pod_autoscaling" {
+  type        = bool
+  description = "Vertical Pod Autoscaling automatically adjusts the resources of pods controlled by it"
+  default     = false
+}
+
 {% endif %}
