@@ -345,3 +345,9 @@ variable "enable_workload_identity" {
   default = []
 }
 
+variable "authenticator_groups_config" {
+  type = list(map(string))
+  description = "security_group - The name of the RBAC security group for use with Google security groups in Kubernetes RBAC. Group name must be in format gke-security-groups@yourdomain.com"
+  default = []
+}
+
