@@ -141,7 +141,6 @@ In either case, upgrading to module version `v1.0.0` will trigger a recreation o
 | enable\_binary\_authorization | Enable BinAuthZ Admission controller | string | `"false"` | no |
 | enable\_intranode\_visibility | Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network | bool | `"false"` | no |
 | enable\_vertical\_pod\_autoscaling | Vertical Pod Autoscaling automatically adjusts the resources of pods controlled by it | bool | `"false"` | no |
-| enable\_workload\_identity | Workload Identity allows Kubernetes service accounts to act as a user-managed Google IAM Service Account. | list | `<list>` | no |
 | horizontal\_pod\_autoscaling | Enable horizontal pod autoscaling addon | bool | `"true"` | no |
 | http\_load\_balancing | Enable httpload balancer addon | bool | `"true"` | no |
 | initial\_node\_count | The number of nodes to create in this cluster's default node pool. | number | `"0"` | no |
@@ -180,6 +179,7 @@ In either case, upgrading to module version `v1.0.0` will trigger a recreation o
 | stub\_domains | Map of stub domains and their resolvers to forward DNS queries for a certain domain to an external DNS server | map(list(string)) | `<map>` | no |
 | subnetwork | The subnetwork to host the cluster in (required) | string | n/a | yes |
 | upstream\_nameservers | If specified, the values replace the nameservers taken by default from the node’s /etc/resolv.conf | list | `<list>` | no |
+| workload\_identity\_config | Workload Identity allows Kubernetes service accounts to act as a user-managed Google IAM Service Account. | list | `<list>` | no |
 | zones | The zones to host the cluster in (optional if regional cluster / required if zonal) | list(string) | `<list>` | no |
 
 ## Outputs
