@@ -65,7 +65,7 @@ resource "google_container_cluster" "primary" {
   }
 
   dynamic workload_identity_config {
-    for_each = var.enable_workload_identity
+    for_each = var.workload_identity_config
     content {
       identity_namespace = "${var.project_id}.svc.id.goog"
     }

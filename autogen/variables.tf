@@ -367,7 +367,7 @@ variable "enable_vertical_pod_autoscaling" {
   default     = false
 }
 
-variable "enable_workload_identity" {
+variable "workload_identity_config" {
   description = "Workload Identity allows Kubernetes service accounts to act as a user-managed Google IAM Service Account."
   default = []
 }
