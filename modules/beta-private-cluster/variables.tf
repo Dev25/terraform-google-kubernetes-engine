@@ -347,6 +347,25 @@ variable "pod_security_policy_config" {
 }
 
 variable "node_metadata" {
+  type        = string
   description = "Specifies how node metadata is exposed to the workload running on the node"
   default     = "UNSPECIFIED"
 }
+
+variable "enable_intranode_visibility" {
+  type        = bool
+  description = "Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network"
+  default     = false
+}
+
+variable "enable_vertical_pod_autoscaling" {
+  type        = bool
+  description = "Vertical Pod Autoscaling automatically adjusts the resources of pods controlled by it"
+  default     = false
+}
+
+variable "enable_workload_identity" {
+  description = "Workload Identity allows Kubernetes service accounts to act as a user-managed Google IAM Service Account."
+  default = []
+}
+

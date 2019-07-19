@@ -333,19 +333,16 @@ variable "database_encryption" {
 }
 
 variable "cloudrun" {
-  type        = bool
   description = "(Beta) Enable CloudRun addon"
   default     = false
 }
 
 variable "enable_binary_authorization" {
-  type        = bool
   description = "Enable BinAuthZ Admission controller"
   default     = false
 }
 
 variable "pod_security_policy_config" {
-  type        = bool
   description = "enabled - Enable the PodSecurityPolicy controller for this cluster. If enabled, pods must be valid under a PodSecurityPolicy to be created."
   default     = [{
     "enabled" = false
@@ -368,6 +365,11 @@ variable "enable_vertical_pod_autoscaling" {
   type        = bool
   description = "Vertical Pod Autoscaling automatically adjusts the resources of pods controlled by it"
   default     = false
+}
+
+variable "enable_workload_identity" {
+  description = "Workload Identity allows Kubernetes service accounts to act as a user-managed Google IAM Service Account."
+  default = []
 }
 
 {% endif %}
