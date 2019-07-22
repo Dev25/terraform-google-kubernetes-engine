@@ -66,11 +66,11 @@ resource "google_container_cluster" "primary" {
     }
   }
 
- dynamic "authenticator_groups_config" {
+  dynamic "authenticator_groups_config" {
     for_each = var.authenticator_groups_config
     content {
-        security_group = "${authenticator_groups_config.value.security_group}"
-      }
+      security_group = "${authenticator_groups_config.value.security_group}"
+    }
   }
 
   dynamic "pod_security_policy_config" {

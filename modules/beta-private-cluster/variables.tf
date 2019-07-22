@@ -366,12 +366,12 @@ variable "enable_vertical_pod_autoscaling" {
 
 variable "workload_identity_config" {
   description = "Workload Identity allows Kubernetes service accounts to act as a user-managed Google IAM Service Account."
-  default = []
+  default     = []
 }
 
 variable "authenticator_groups_config" {
-  type = list(map(string))
+  type        = list(map(string))
   description = "security_group - The name of the RBAC security group for use with Google security groups in Kubernetes RBAC. Group name must be in format gke-security-groups@yourdomain.com"
-  default = []
+  default     = []
 }
 
