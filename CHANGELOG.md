@@ -10,6 +10,7 @@ Extending the adopted spec, each change should have a link to its corresponding 
 ### Added
 
 * Support for Intranode Visbiility (IV) and Veritical Pod Autoscaling (VPA) beta features [#216]
+* Support for Workload Identity (WI) and Google Groups security group beta features [#217]
 
 ## [v4.1.0] 2019-07-24
 
@@ -167,6 +168,7 @@ Extending the adopted spec, each change should have a link to its corresponding 
 [v0.3.0]: https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/compare/v0.2.0...v0.3.0
 [v0.2.0]: https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/compare/v0.1.0...v0.2.0
 
+[#217]: https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/pull/217
 [#216]: https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/pull/216
 [#214]: https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/pull/214
 [#210]: https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/pull/210
