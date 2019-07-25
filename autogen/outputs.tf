@@ -160,7 +160,7 @@ output "workload_identity_namespace" {
 
 
 output "authenticator_security_group" {
-  description = "Whether veritical pod autoscaling is enabled"
+  description = "The name of the RBAC security group for use with Google security groups"
   value       = local.cluster_authenticator_security_group
 }
 {% endif %}

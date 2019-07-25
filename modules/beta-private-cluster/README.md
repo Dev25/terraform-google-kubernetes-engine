@@ -195,7 +195,7 @@ In either case, upgrading to module version `v1.0.0` will trigger a recreation o
 
 | Name | Description |
 |------|-------------|
-| authenticator\_security\_group | Whether veritical pod autoscaling is enabled |
+| authenticator\_security\_group | The name of the RBAC security group for use with Google security groups |
 | ca\_certificate | Cluster ca certificate (base64 encoded) |
 | cloudrun\_enabled | Whether CloudRun enabled |
 | endpoint | Cluster endpoint |
