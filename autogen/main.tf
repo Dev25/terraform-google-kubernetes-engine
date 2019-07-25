@@ -261,6 +261,17 @@ locals {
     regional = element(concat(google_container_cluster.primary.*.vertical_pod_autoscaling.0.enabled, [""]), 0)
     zonal    = element(concat(google_container_cluster.zonal_primary.*.vertical_pod_autoscaling.0.enabled, [""]), 0)
   }
+
+  cluster_type_workload_identity_namespace = {
+    regional = element(concat(google_container_cluster.primary.*.workload_identity_config.0.identity_namespace, [""]), 0)
+    zonal    = element(concat(google_container_cluster.zonal_primary.*.workload_identity_config.0.identity_namespace, [""]), 0)
+  }
+
+  cluster_type_authenticator_security_group = {
+    regional = element(concat(google_container_cluster.primary.*.authenticator_groups_config.0.security_group, [""]), 0)
+    zonal    = element(concat(google_container_cluster.zonal_primary.*.authenticator_groups_config.0.security_group, [""]), 0)
+  }
+
   # /BETA features
   {% endif %}
 
@@ -301,6 +312,8 @@ locals {
   cluster_pod_security_policy_enabled       = local.cluster_type_output_pod_security_policy_enabled[local.cluster_type]
   cluster_intranode_visibility_enabled      = local.cluster_type_output_intranode_visbility_enabled[local.cluster_type]
   cluster_vertical_pod_autoscaling_enabled  = local.cluster_type_output_vertical_pod_autoscaling_enabled[local.cluster_type]
+  cluster_workload_identity_namespace       = local.cluster_type_workload_identity_namespace[local.cluster_type]
+  cluster_authenticator_security_group      = local.cluster_type_authenticator_security_group[local.cluster_type]
   # /BETA features
 {% endif %}
 }

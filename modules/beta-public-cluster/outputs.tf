@@ -151,3 +151,14 @@ output "vertical_pod_autoscaling_enabled" {
   value       = local.cluster_vertical_pod_autoscaling_enabled
 }
 
+
+output "workload_identity_namespace" {
+  description = "Workload Identity Namespace"
+  value       = local.cluster_workload_identity_namespace
+}
+
+
+output "authenticator_security_group" {
+  description = "Whether veritical pod autoscaling is enabled"
+  value       = local.cluster_authenticator_security_group
+}

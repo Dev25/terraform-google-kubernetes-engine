@@ -128,6 +128,7 @@ In either case, upgrading to module version `v1.0.0` will trigger a recreation o
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| authenticator\_groups\_config | security_group - The name of the RBAC security group for use with Google security groups in Kubernetes RBAC. Group name must be in format gke-security-groups@yourdomain.com | list(map(string)) | `<list>` | no |
 | basic\_auth\_password | The password to be used with Basic Authentication. | string | `""` | no |
 | basic\_auth\_username | The username to be used with Basic Authentication. An empty value will disable Basic Authentication, which is the recommended configuration. | string | `""` | no |
 | cloudrun | (Beta) Enable CloudRun addon | string | `"false"` | no |
@@ -178,12 +179,14 @@ In either case, upgrading to module version `v1.0.0` will trigger a recreation o
 | stub\_domains | Map of stub domains and their resolvers to forward DNS queries for a certain domain to an external DNS server | map(list(string)) | `<map>` | no |
 | subnetwork | The subnetwork to host the cluster in (required) | string | n/a | yes |
 | upstream\_nameservers | If specified, the values replace the nameservers taken by default from the node’s /etc/resolv.conf | list | `<list>` | no |
+| workload\_identity\_config | Workload Identity allows Kubernetes service accounts to act as a user-managed Google IAM Service Account. | list | `<list>` | no |
 | zones | The zones to host the cluster in (optional if regional cluster / required if zonal) | list(string) | `<list>` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
+| authenticator\_security\_group | Whether veritical pod autoscaling is enabled |
 | ca\_certificate | Cluster ca certificate (base64 encoded) |
 | cloudrun\_enabled | Whether CloudRun enabled |
 | endpoint | Cluster endpoint |
@@ -207,6 +210,7 @@ In either case, upgrading to module version `v1.0.0` will trigger a recreation o
 | service\_account | The service account to default running nodes as if not overridden in `node_pools`. |
 | type | Cluster type (regional / zonal) |
 | vertical\_pod\_autoscaling\_enabled | Whether veritical pod autoscaling is enabled |
+| workload\_identity\_namespace | Workload Identity Namespace |
 | zones | List of zones in which the cluster resides |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

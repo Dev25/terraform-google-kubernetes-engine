@@ -67,6 +67,20 @@ resource "google_container_cluster" "zonal_primary" {
     }
   }
 
+  dynamic "workload_identity_config" {
+    for_each = var.workload_identity_config
+    content {
+      identity_namespace = "${var.project_id}.svc.id.goog"
+    }
+  }
+
+  dynamic "authenticator_groups_config" {
+    for_each = var.authenticator_groups_config
+    content {
+        security_group = "${authenticator_groups_config.value.security_group}"
+      }
+  }
+
 {% endif %}
   dynamic "master_authorized_networks_config" {
     for_each = var.master_authorized_networks_config
