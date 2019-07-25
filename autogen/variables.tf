@@ -343,6 +343,7 @@ variable "enable_binary_authorization" {
 }
 
 variable "pod_security_policy_config" {
+  type = list(map(bool))
   description = "enabled - Enable the PodSecurityPolicy controller for this cluster. If enabled, pods must be valid under a PodSecurityPolicy to be created."
   default     = [{
     "enabled" = false
@@ -367,13 +368,16 @@ variable "enable_intranode_visibility" {
 }
 
 variable "workload_identity_config" {
+  type = list(map(bool))
   description = "Workload Identity allows Kubernetes service accounts to act as a user-managed Google IAM Service Account."
-  default = []
+  default     = [{
+    "enabled" = false
+  }]
 }
 
  variable "authenticator_groups_config" {
   type = list(map(string))
   description = "security_group - The name of the RBAC security group for use with Google security groups in Kubernetes RBAC. Group name must be in format gke-security-groups@yourdomain.com"
-  default = []
+  default     = []
 }
 {% endif %}
