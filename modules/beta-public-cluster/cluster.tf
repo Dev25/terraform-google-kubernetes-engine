@@ -167,6 +167,10 @@ resource "google_container_cluster" "primary" {
   workload_identity_config {
     identity_namespace = var.identity_namespace
   }
+
+  authenticator_groups_config {
+    security_group = var.authenticator_security_group
+  }
 }
 
 /******************************************
