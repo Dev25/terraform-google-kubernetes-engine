@@ -71,7 +71,9 @@ locals {
     node_metadata = var.node_metadata
   }]
 
-  cluster_authenticator_security_group = var.authenticator_security_group == "" ? [] : [var.authenticator_security_group]
+  cluster_authenticator_security_group = var.authenticator_security_group == "" ? [] : [{
+    security_group = var.authenticator_security_group
+  }]
 
 {% endif %}
 
