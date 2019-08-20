@@ -173,8 +173,11 @@ resource "google_container_cluster" "primary" {
     identity_namespace = var.identity_namespace
   }
 
-  authenticator_groups_config {
-    security_group = var.authenticator_security_group
+  dynamic "authenticator_groups_config" {
+    for_each = local.cluster_authenticator_security_group
+    content {
+      security_group = local.cluster_authenticator_security_group.security_group
+    }
   }
 }
 
