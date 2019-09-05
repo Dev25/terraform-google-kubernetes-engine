@@ -243,20 +243,20 @@ resource "google_container_node_pool" "pools" {
         "cluster_name" = var.name
       },
       {
-        "node_pool" = each.value["name"]
+        "node_pool" = each.key
       },
       var.node_pools_labels["all"],
-      var.node_pools_labels[each.value["name"]],
+      var.node_pools_labels[each.key],
     )
     metadata = merge(
       {
         "cluster_name" = var.name
       },
       {
-        "node_pool" = each.value["name"]
+        "node_pool" = each.key
       },
       var.node_pools_metadata["all"],
-      var.node_pools_metadata[each.value["name"]],
+      var.node_pools_metadata[each.key],
       {
         "disable-legacy-endpoints" = var.disable_legacy_metadata_endpoints
       },
@@ -264,7 +264,7 @@ resource "google_container_node_pool" "pools" {
     dynamic "taint" {
       for_each = concat(
         var.node_pools_taints["all"],
-        var.node_pools_taints[each.value["name"]],
+        var.node_pools_taints[each.key],
       )
       content {
         effect = taint.value.effect
@@ -274,9 +274,9 @@ resource "google_container_node_pool" "pools" {
     }
     tags = concat(
       ["gke-${var.name}"],
-      ["gke-${var.name}-${each.value["name"]}"],
+      ["gke-${var.name}-${each.key}"],
       var.node_pools_tags["all"],
-      var.node_pools_tags[each.value["name"]],
+      var.node_pools_tags[each.key],
     )
 
     disk_size_gb = lookup(each.value, "disk_size_gb", 100)
@@ -290,7 +290,7 @@ resource "google_container_node_pool" "pools" {
 
     oauth_scopes = concat(
       var.node_pools_oauth_scopes["all"],
-      var.node_pools_oauth_scopes[each.value["name"]],
+      var.node_pools_oauth_scopes[each.key],
     )
 
     guest_accelerator = [
