@@ -113,7 +113,7 @@ resource "google_container_cluster" "primary" {
     initial_node_count = var.initial_node_count
 
     node_config {
-      service_account = lookup(var.node_pools[0], "service_account", local.service_account)
+      service_account = local.service_account
     }
   }
 
@@ -131,9 +131,8 @@ resource "google_container_cluster" "primary" {
  *****************************************/
 resource "google_container_node_pool" "pools" {
   provider = google
-  count    = length(var.node_pools)
-
   for_each = var.node_pools
+
   name     = each.key
   project  = var.project_id
   location = local.location
