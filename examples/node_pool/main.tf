@@ -40,7 +40,6 @@ module "gke" {
 
   node_pools = {
     pool-01 = {
-      name            = "pool-01"
       min_count       = 1
       max_count       = 2
       service_account = var.compute_engine_service_account
