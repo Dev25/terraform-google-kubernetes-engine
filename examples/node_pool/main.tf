@@ -38,16 +38,15 @@ module "gke" {
   remove_default_node_pool          = true
   disable_legacy_metadata_endpoints = false
 
-  node_pools = [
-    {
+  node_pools = {
+    pool-01 = {
       name            = "pool-01"
       min_count       = 1
       max_count       = 2
       service_account = var.compute_engine_service_account
       auto_upgrade    = true
     },
-    {
-      name              = "pool-02"
+    pool-02 = {
       machine_type      = "n1-standard-2"
       min_count         = 1
       max_count         = 2
@@ -58,8 +57,8 @@ module "gke" {
       image_type        = "COS"
       auto_repair       = false
       service_account   = var.compute_engine_service_account
-    },
-  ]
+    }
+  }
 
   node_pools_oauth_scopes = {
     all     = []
