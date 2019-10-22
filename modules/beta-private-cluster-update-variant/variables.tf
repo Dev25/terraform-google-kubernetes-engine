@@ -40,7 +40,8 @@ variable "regional" {
 
 variable "region" {
   type        = string
-  description = "The region to host the cluster in (required)"
+  description = "The region to host the cluster in (optional if zonal cluster / required if regional)"
+  default     = null
 }
 
 variable "zones" {
@@ -148,14 +149,9 @@ variable "disable_legacy_metadata_endpoints" {
 }
 
 variable "node_pools" {
-  type        = list(map(string))
-  description = "List of maps containing node pools"
-
-  default = [
-    {
-      name = "default-node-pool"
-    },
-  ]
+  type        = map
+  description = "map containing node pools"
+  default     = {}
 }
 
 variable "node_pools_labels" {
@@ -265,6 +261,12 @@ variable "grant_registry_access" {
   type        = bool
   description = "Grants created cluster-specific service account storage.objectViewer role."
   default     = false
+}
+
+variable "registry_project_id" {
+  type        = string
+  description = "Project holding the Google Container Registry. If empty, we use the cluster project. If grant_registry_access is true, storage.objectViewer role is assigned on this project."
+  default     = ""
 }
 
 variable "service_account" {

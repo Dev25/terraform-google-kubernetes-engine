@@ -23,7 +23,7 @@ data "google_compute_zones" "available" {
   provider = google-beta
 
   project = var.project_id
-  region  = var.region
+  region  = local.region
 }
 
 resource "random_shuffle" "available_zones" {
@@ -34,6 +34,7 @@ resource "random_shuffle" "available_zones" {
 locals {
   // location
   location = var.regional ? var.region : var.zones[0]
+  region   = var.region == null ? join("-", slice(split("-", var.zones[0]), 0, 2)) : var.region
   // for regional cluster - use var.zones if provided, use available otherwise, for zonal cluster use var.zones with first element extracted
   node_locations = var.regional ? coalescelist(compact(var.zones), sort(random_shuffle.available_zones.result)) : slice(var.zones, 1, length(var.zones))
   // kuberentes version
@@ -100,8 +101,8 @@ locals {
 
   # /BETA features
 
-  cluster_output_node_pools_names    = concat(google_container_node_pool.pools.*.name, [""])
-  cluster_output_node_pools_versions = concat(google_container_node_pool.pools.*.version, [""])
+  cluster_output_node_pools_names    = concat([for np in google_container_node_pool.pools : np.name], [""])
+  cluster_output_node_pools_versions = concat([for np in google_container_node_pool.pools : np.version], [""])
 
   cluster_master_auth_list_layer1 = local.cluster_output_master_auth
   cluster_master_auth_list_layer2 = local.cluster_master_auth_list_layer1[0]
