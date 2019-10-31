@@ -149,14 +149,9 @@ variable "disable_legacy_metadata_endpoints" {
 }
 
 variable "node_pools" {
-  type        = list(map(string))
-  description = "List of maps containing node pools"
-
-  default = [
-    {
-      name = "default-node-pool"
-    },
-  ]
+  type        = map
+  description = "map containing node pools"
+  default     = {}
 }
 
 variable "node_pools_labels" {
