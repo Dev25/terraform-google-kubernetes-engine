@@ -25,6 +25,8 @@ If you are using these features with a private cluster, you will need to either:
 3. Include the external IP of your Terraform deployer in the `master_authorized_networks` configuration. Note that only IP addresses reserved in Google Cloud (such as in other VPCs) can be whitelisted.
 4. Deploy a [bastion host](https://github.com/terraform-google-modules/terraform-google-bastion-host) or [proxy](https://cloud.google.com/solutions/creating-kubernetes-engine-private-clusters-with-net-proxies) in the same VPC as your GKE cluster.
 
+If you are going to isolate your GKE private clusters from internet access you could check [guide](https://medium.com/google-cloud/completely-private-gke-clusters-with-no-internet-connectivity-945fffae1ccd) and [repo](https://github.com/andreyk-code/no-inet-gke-cluster)
+
 {% endif %}
 
 ## Compatibility
@@ -170,7 +172,7 @@ The node_pools variable takes the following parameters:
 | node_count | The number of nodes in the nodepool when autoscaling is false. Otherwise defaults to 1. Only valid for non-autoscaling clusers |  | Required |
 {% if beta_cluster %}
 | node_locations | The list of zones in which the cluster's nodes are located. Nodes must be in the region of their regional cluster or in the same region as their cluster's zone for zonal clusters. Defaults to cluster level node locations if nothing is specified | " " | Optional |
-| node_metadata | Options to expose the node metadata to the workload running on the node | | Required |
+| node_metadata | Options to expose the node metadata to the workload running on the node | | Optional |
 {% endif %}
 | preemptible | A boolean that represents whether or not the underlying node VMs are preemptible | false | Optional |
 {% if beta_cluster %}
