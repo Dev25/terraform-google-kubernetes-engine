@@ -77,8 +77,5 @@ resource "google_compute_firewall" "master_webhooks" {
     ports    = var.firewall_inbound_ports
   }
 
-  depends_on = [
-    google_container_cluster.primary,
-  ]
 
 }
